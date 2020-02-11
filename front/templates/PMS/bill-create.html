@@ -1,0 +1,106 @@
+{% extends "../base.html" %}
+{% load staticfiles %}
+<!DOCTYPE html>
+
+{% block body %}
+            <!-- Main Content -->
+            <div class="container-fluid">
+                <div class="side-body">
+
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">创建KA账单</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <form class="form-horizontal" method="post" action="/purchase_order/bill_create/">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">采购单Id<span class="text-danger">*</span></label>
+                                            <div class="col-sm-6">
+                                                <input type="text" name="po_id_list" placeholder="不同PO id之间以逗号隔开" class="form-control" required>
+                                            </div>
+                                            {% if messages %}
+                                                <script>
+                                                {% for msg in messages %}
+                                                alert('{{ msg.message }}');
+                                                {% endfor %}
+                                                </script>
+                                            {% endif %}
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">供应商uuid<span class="text-danger">*</span></label>
+                                            <div class="col-sm-6">
+                                                <input type="text" name="supplier_uuid" placeholder="请输入供应商uuid" class="form-control" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">User Id<span class="text-danger">*</span></label>
+                                            <div class="col-sm-6">
+                                                <input type="number" name="user_id" placeholder="用户id必填，不校验" class="form-control" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">User Name<span class="text-danger">*</span></label>
+                                            <div class="col-sm-6">
+                                                <input type="text" name="user_name" placeholder="用户名必填，不校验" class="form-control" required>
+                                            </div>
+                                        </div>
+{#                                        <div class="form-group">#}
+{#                                            <label class="col-sm-2 control-label"></label>#}
+{#                                            <div class="col-sm-6">#}
+{#                                                <div style="color: #bd081c">{{ error }}<br></div>#}
+{#                                            </div>#}
+{#                                        </div>#}
+                                        <div style="text-indent:16.5em" >
+                                            <div style="color: #bd081c">{{ error }}<br>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-6">
+                                                <button type="submit" class="btn btn-primary">提交</button>
+                                            </div>
+                                        </div>
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">账单生成结果</h3>
+                                </div>
+                                        <div class="panel-body">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                <tr>
+                                                    <th>id</th>
+                                                    <th>uuid</th>
+                                                    <th>供应商uuid</th>
+                                                    <th>供应商名称</th>
+                                                    <th>创建时间</th>
+                                                    <th>仓库ID</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for bill in bill_data %}
+                                                    <tr>
+                                                        <td>{{ bill.id }}</td>
+                                                        <td>{{ bill.uuid }}</td>
+                                                        <td>{{ bill.supplier_uuid }}</td>
+                                                        <td>{{ bill.supplier_name }}</td>
+                                                        <td>{{ bill.create_time }}</td>
+                                                        <td>{{ bill.wh_id }}</td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        {% csrf_token %}
+                                    </form>
+                                </div>
+
+                            </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+{% endblock %}

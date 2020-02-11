@@ -1,0 +1,78 @@
+{% extends "../base.html" %}
+{% load static %}
+<!DOCTYPE html>
+
+{% block body %}
+            <!-- Main Content -->
+<div class="container-fluid" xmlns:H="http://www.w3.org/1999/xhtml">
+                <div class="side-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">大货计划编辑</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <form class="form-horizontal" method="post" action="/wms_center/editDailyCgPlan/">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">id<span class="text-danger">*</span></label>
+                                            <div class="col-sm-6">
+                                                <input type="text" name="id" value="{{id}}" readonly class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">plan_date<span class="text-danger">*</span></label>
+                                            <div class="col-sm-6">
+                                                <input type="text" name="plan_date" value="{{result.plan_date}}" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">country<span class="text-danger">*</span></label>
+                                            <div class="col-sm-6">
+                                                <input type="text" name="country" readonly value="{{result.country}}" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">quota<span class="text-danger">*</span></label>
+                                            <div class="col-sm-6">
+                                                <input type="text" name="quota" value="{{result.quota}}" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">shipped_num<span class="text-danger">*</span></label>
+                                            <div class="col-sm-6">
+                                                <input type="text" name="shipped_num" value="{{result.shipped_num}}" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">当前仓<span class="text-danger">*</span></label>
+                                            <div class="col-sm-6">
+                                                <input type="text" name="warehouse" value="{{warehouse}}" readonly class="form-control">
+                                            </div>
+                                        </div>
+
+                                            {% if messages %}
+                                                <script>
+                                                {% for msg in messages %}
+                                                alert('{{ msg.message }}');
+                                                {% endfor %}
+                                                </script>
+                                            {% endif %}
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-6">
+                                                <button type="submit" class="btn btn-primary" href="/wms_center/editDailyCgPlan/">确认</button>
+                                            </div>
+                                        </div>
+                                        {% csrf_token %}
+                                    </form>
+                                </div>
+
+                            </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+{% endblock %}

@@ -1,0 +1,117 @@
+{% extends "../base.html" %}
+{% load staticfiles %}
+<!DOCTYPE html>
+
+{% block body %}
+    <!-- Main Content -->
+    <div class="container-fluid">
+        <div class="side-body">
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">修改PO单</h3>
+                        </div>
+                        <div class="panel-body">
+                            <form class="form-horizontal" method="post" action="/purchase_order/po_update/">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">uuid<span class="text-danger">*</span></label>
+                                    <div class="col-sm-6">
+                                        <input name="uuid" placeholder="请输入PO单uuid" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">来源类型<span
+                                            class="text-danger">*</span></label>
+                                    <div class="col-sm-6">
+                                        <select name="source_type" class="form-control">
+                                            <option value=0 selected="selected">系统</option>
+                                            <option value=1>人工</option>
+                                            <option value=2>补单</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">系统需求数<span
+                                            class="text-danger">*</span></label>
+                                    <div class="col-sm-6">
+                                        <input type="number" name="qty_system_demand" placeholder="请输入内容"
+                                               class="form-control" required>
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">采购数<span
+                                            class="text-danger">*</span></label>
+                                    <div class="col-sm-6">
+                                        <input type="number" name="qty_purchased" placeholder="请输入内容"
+                                               class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">PO单状态<span
+                                            class="text-danger">*</span></label>
+                                    <div class="col-sm-6">
+                                        <select name="state" class="form-control">
+                                            <option value=-1>未下单</option>
+                                            <option value=0 selected="selected">未采购</option>
+                                            <option value=1>已采购</option>
+                                            <option value=3>部分入库</option>
+                                            <option value=4>全部入库</option>
+                                            <option value=5>部分缺货</option>
+                                            <option value=6>全部缺货</option>
+                                            <option value=7>已取消</option>
+                                            <option value=8>已下单</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">PO单归属<span
+                                            class="text-danger">*</span></label>
+                                    <div class="col-sm-6">
+                                        <select name="cooperative_supplier" class="form-control">
+                                            <option value=0>盲采供应商</option>
+                                            <option value=1 selected="selected">合作供应商</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">User Id<span
+                                            class="text-danger">*</span></label>
+                                    <div class="col-sm-6">
+                                        <input type="number" name="user_id" placeholder="用户id必填，不校验" class="form-control"
+                                               required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">User Name<span
+                                            class="text-danger">*</span></label>
+                                    <div class="col-sm-6">
+                                        <input type="text" name="user_name" placeholder="用户名必填，不校验" class="form-control"
+                                               required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"></label>
+                                    <div class="col-sm-6">
+                                        <div style="color: #bd081c">{{ message }}<br></div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-6">
+                                        <button type="submit" class="btn btn-primary">确认修改</button>
+                                    </div>
+                                </div>
+                                {% csrf_token %}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "../base.html" %}
+{% load static %}
+<!DOCTYPE html>
+
+{% block body %}
+
+<div class="side-body">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel">
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>id</th>
+                                <th>plan_date</th>
+                                <th>country</th>
+                                <th>quota</th>
+                                <th>shipped_num</th>
+                                <th>update_time</th>
+                                <th>create_time</th>
+                                <th>operate</th>
+                                <!--<th>warehouse</th>-->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in result %}
+                            <tr>
+                                <th><a href="/wms_center/getDailyCgPlanById/?whid={{warehouse}}&id={{item.id}}" style="color:blue">{{item.id}}</a></th>
+                                <!--<th name="id">{{item.id}}</th>-->
+                                <th>{{item.plan_date|date:"Y-m-d"}}</th>
+                                <th>{{item.country}}</th>
+                                <th>{{item.quota}}</th>
+                                <th>{{item.shipped_num}}</th>
+                                <th>{{item.update_time|date:"Y-m-d H:i:s"}}</th>
+                                <th>{{item.create_time|date:"Y-m-d H:i:s"}}</th>
+                                <th><a href="/wms_center/getDailyCgPlanById/?whid={{warehouse}}&id={{item.id}}" style="color:blue">编辑</a></th>
+                                <!--<th>{{warehouse}}</th>-->
+                            </tr>
+                                {% csrf_token %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

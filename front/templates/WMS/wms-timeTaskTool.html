@@ -1,0 +1,64 @@
+{% extends "../base.html" %}
+{% load static %}
+<!DOCTYPE html>
+
+{% block body %}
+            <!-- Main Content -->
+            <div class="container-fluid">
+                <div class="side-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">定时任务</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <form class="form-horizontal" method="post" action="/wms_center/celery_task/">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">仓库<span class="text-danger">*</span></label>
+                                            <div class="col-sm-6">
+                                                <select name="wh_name" class="form-control" required>
+                                                    <option value=hangzhou2 selected="selected">杭州2号仓</option>
+                                                    <option value=dongguan2>东莞2号仓</option>
+                                                    <option value=india>印度仓</option>
+                                                    <option value=india2>印度2号仓</option>
+                                                    <option value=india3>印度3号仓</option>
+                                                    <option value=india4>印度4号仓</option>
+                                                    <option value=india5>印度5号仓</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">定时任务类型<span class="text-danger">*</span></label>
+                                            <div class="col-sm-6">
+                                                <select name="task_name" class="form-control" required>
+                                                    <option value=auto_transfer_idle_to_sp selected="selected">闲置库存绑定WO，TO</option>
+                                                    <option value=distribute_all_sp_logistics>修复分配物流计划失败任务</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                            {% if messages %}
+                                                <script>
+                                                {% for msg in messages %}
+                                                alert('{{ msg.message }}');
+                                                {% endfor %}
+                                                </script>
+                                            {% endif %}
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-6">
+                                                <button type="submit" class="btn btn-primary" href="/wms_center/celery_task/">确认</button>
+                                            </div>
+                                        </div>
+                                        {% csrf_token %}
+                                    </form>
+                                </div>
+
+                            </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+{% endblock %}

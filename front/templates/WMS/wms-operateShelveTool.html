@@ -1,0 +1,75 @@
+{% extends "../base.html" %}
+{% load static %}
+<!DOCTYPE html>
+
+{% block body %}
+            <!-- Main Content -->
+            <div class="container-fluid">
+                <div class="side-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">商品上架/下架<span style="color:red">（目前的操作人固定是开发者）</span></h3>
+                                </div>
+                                <div class="panel-body">
+                                    <form class="form-horizontal" method="post" action="/wms_center/pda_operate_shelve/">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">仓库<span class="text-danger">*</span></label>
+                                            <div class="col-sm-6">
+                                                <select name="warehouse" class="form-control" required>
+                                                    <option value=hangzhou2 selected="selected">杭州2号仓</option>
+                                                    <option value=dongguan2>东莞2号仓</option>
+                                                    <option value=india>印度仓</option>
+                                                    <option value=india2>印度2号仓</option>
+                                                    <option value=india3>印度3号仓</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">操作类型<span class="text-danger">*</span></label>
+                                            <div class="col-sm-6">
+                                                <select name="operate_type" class="form-control" required>
+                                                    <option value=operate_shelve selected="selected">商品上架</option>
+                                                    <option value=operate_off_shelf>商品下架</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">barcode<span class="text-danger">*</span></label>
+                                            <div class="col-sm-6">
+                                                <input type="text" name="barcode" placeholder="请输入barcode" class="form-control" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">box_name<span class="text-danger">*</span></label>
+                                            <div class="col-sm-6">
+                                                <input type="text" name="box_name" placeholder="请输入box_name" class="form-control" required>
+                                            </div>
+                                        </div>
+                                            {% if messages %}
+                                                <script>
+                                                {% for msg in messages %}
+                                                alert('{{ msg.message }}');
+                                                {% endfor %}
+                                                </script>
+                                            {% endif %}
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-6">
+                                                <button type="submit" class="btn btn-primary" href="wms_center/pda_operate_shelve">确认</button>
+                                                <button type="reset" class="btn btn-primary" href="wms_center/pda_operate_shelve">重置</button>
+                                            </div>
+                                        </div>
+                                        {% csrf_token %}
+                                    </form>
+                                </div>
+
+                            </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+{% endblock %}

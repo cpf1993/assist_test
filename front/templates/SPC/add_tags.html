@@ -1,0 +1,63 @@
+{% extends "../base.html" %}
+{% load staticfiles %}
+<!DOCTYPE html>
+
+{% block body %}
+            <!-- Main Content -->
+            <div class="container-fluid">
+                <div class="side-body">
+
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">测试商品打标</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <form class="form-horizontal" method="post" >
+
+                                       <div class="form-group">
+                                            <label class="col-sm-2 control-label">Product ID<span class="text-danger">*</span></label>
+                                            <div class="col-sm-6">
+                                                <input type="number" name="productid" placeholder="输入spuid，例如货号CTO000528896N，输入528896" class="form-control" required>
+                                            </div>
+                                            {% if messages %}
+                                                <script>
+                                                {% for msg in messages %}
+                                                alert('{{ msg.message }}');
+                                                {% endfor %}
+                                                </script>
+                                            {% endif %}
+                                        </div>
+                                       <div class="form-group">
+                                            <label class="col-sm-2 control-label">Tags<span class="text-danger">*</span></label>
+                                            <div class="col-sm-6">
+                                                <input type="string" name="tags" placeholder="输入标签id如49，50或者NULL（代表无标签）" class="form-control" required>
+                                            </div>
+                                            {% if messages %}
+                                                <script>
+                                                {% for msg in messages %}
+                                                alert('{{ msg.message }}');
+                                                {% endfor %}
+                                                </script>
+                                            {% endif %}
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-6">
+                                                <button type="submit" class="btn btn-primary">提交</button>
+                                            </div>
+                                        </div>
+                                        {% csrf_token %}
+                                    </form>
+                                </div>
+
+                            </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+{% endblock %}

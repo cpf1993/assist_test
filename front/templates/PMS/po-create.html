@@ -1,0 +1,106 @@
+{% extends "../base.html" %}
+{% load staticfiles %}
+<!DOCTYPE html>
+
+{% block body %}
+            <!-- Main Content -->
+            <div class="container-fluid">
+                <div class="side-body">
+
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">创建PO单</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <form class="form-horizontal" method="post" action="/purchase_order/singlepo_create/">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">SKU ID<span class="text-danger">*</span></label>
+                                            <div class="col-sm-6">
+                                                <input type="number" name="sku_id" placeholder="请输入sku id" class="form-control" required>
+                                            </div>
+                                            {% if messages %}
+                                                <script>
+                                                {% for msg in messages %}
+                                                alert('{{ msg.message }}');
+                                                {% endfor %}
+                                                </script>
+                                            {% endif %}
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">需求数量<span class="text-danger">*</span></label>
+                                            <div class="col-sm-6">
+                                                <input type="number" name="demand" placeholder="请输入内容" class="form-control" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">仓库<span class="text-danger">*</span></label>
+                                            <div class="col-sm-6">
+                                                <select name="wh_id" class="form-control" required>
+                                                    <optgroup label="China">
+                                                        <option value=998>开发仓</option>
+                                                        <option value=997>测试仓</option>
+                                                        <option value=1>余杭仓</option>
+                                                        <option value=2>萧山仓</option>
+                                                        <option value=3>心怡仓</option>
+                                                        <option value=4>东莞1号仓</option>
+                                                        <option value=6>备货仓</option>
+                                                        <option value=11 selected="selected">杭州2号仓</option>
+                                                        <option value=12>备货2号仓</option>
+                                                        <option value=13>东莞2号仓</option>
+                                                    </optgroup>
+                                                    <optgroup label="India">
+                                                        <option value=5>印度仓</option>
+                                                        <option value=7>印度2号仓</option>
+                                                        <option value=8>印度3号仓</option>
+                                                        <option value=15>印度4号仓</option>
+                                                    </optgroup>
+                                                    <optgroup label="MiddleEast">
+                                                        <option value=9>沙特仓</option>
+                                                        <option value=10>阿联酋仓</option>
+                                                    </optgroup>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">活动Id</label>
+                                            <div class="col-sm-6">
+                                                <input type="number" name="activity_id" placeholder="输入活动id生成活动PO，否则生成普通PO" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">User Id<span class="text-danger">*</span></label>
+                                            <div class="col-sm-6">
+                                                <input type="number" name="user_id" placeholder="用户id必填，不校验" class="form-control" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">User Name<span class="text-danger">*</span></label>
+                                            <div class="col-sm-6">
+                                                <input type="text" name="user_name" placeholder="用户名必填，不校验" class="form-control" required>
+                                            </div>
+                                        </div>
+                                        <div style="text-indent:16.5em" >
+                                            <div style="color: #bd081c">{{ error }}<br>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-6">
+                                                <button type="submit" class="btn btn-primary">提交</button>
+                                            </div>
+                                        </div>
+                                        {% csrf_token %}
+                                    </form>
+                                </div>
+
+                            </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+{% endblock %}

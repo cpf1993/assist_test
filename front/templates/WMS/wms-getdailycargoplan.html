@@ -1,0 +1,50 @@
+{% extends "../base.html" %}
+{% load static %}
+<!DOCTYPE html>
+
+{% block body %}
+            <!-- Main Content -->
+            <div class="container-fluid">
+                <div class="side-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">大货计划查询</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <form class="form-horizontal" method="post" action="/wms_center/get_dailyCgPlanResult/">
+                                         <div class="form-group">
+                                            <label class="col-sm-2 control-label">仓库<span class="text-danger">*</span></label>
+                                            <div class="col-sm-6">
+                                                <select name="wh_id" class="form-control" required>
+                                                    <option value=idoo_hangzhou2 selected="selected">杭州2号仓</option>
+                                                    <option value=idoo_dongguan2>东莞2号仓</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                            {% if messages %}
+                                                <script>
+                                                {% for msg in messages %}
+                                                alert('{{ msg.message }}');
+                                                {% endfor %}
+                                                </script>
+                                            {% endif %}
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-6">
+                                                <button type="submit" class="btn btn-primary" href="wms_center/confirm_bind/">确认</button>
+                                            </div>
+                                        </div>
+                                        {% csrf_token %}
+                                    </form>
+                                </div>
+
+                            </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+{% endblock %}

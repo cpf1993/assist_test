@@ -1,0 +1,29 @@
+{% extends "../base.html" %}
+{% load static %}
+<!DOCTYPE html>
+
+{% block body %}
+            <!-- Main Content -->
+            <div class="container-fluid">
+                <div class="side-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <body text="black">
+                                <h1>WMS仓储操作指南</h1>
+                                <p>1：下单后，对于无库存的WO单，先去绑定闲置库存    （ <a href="/wms_center/bind_idlesku/" style="color:blue">闲置库存绑定工具</a> ）</p>
+                                <p>2：去WMS系统-库存管理-库位分配 操作库位分配</p>
+                                <P>3：匹配到订单库位后，去上架商品（<span>⭐️</span>切记：上架前先看一下有没有当天的大货计划，尤其是单件商品的时候，不然无法分配物流）
+                                    （<a href="/wms_center/get_dailycargoplan" style="color:blue">大货计划查询工具</a>）
+                                    （<a href="/wms_center/operate_shelve_tool" style="color:blue">商品上/下架工具</a>）
+                                </P>
+                                <p>4：若是单件订单，会自动完成物流计划/出库计划； 若是多件订单，会自动完成物流计划，但是需要自己去（WMS系统-出库管理-出库计划）
+                                    完成出库计划
+                                </p>
+                                <p>5：去（wms系统-出库管理-检查出库单）进行出库单检查（<a href="" style="color:blue">暴力修改物流商工具</a>）</p>
+
+                            </body>
+                        </div>
+                    </div>
+                </div>
+            </div>
+{% endblock %}

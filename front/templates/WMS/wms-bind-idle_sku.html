@@ -1,0 +1,69 @@
+{% extends "../base.html" %}
+{% load static %}
+<!DOCTYPE html>
+
+{% block body %}
+            <!-- Main Content -->
+            <div class="container-fluid">
+                <div class="side-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">绑定闲置库存</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <form class="form-horizontal" method="post" action="/wms_center/confirm_bind/">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">sku_id<span class="text-danger">*</span></label>
+                                            <div class="col-sm-6">
+                                                <input type="text" name="sku_id" placeholder="请输入sku_id" class="form-control" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">sp_name<span class="text-danger">*</span></label>
+                                            <div class="col-sm-6">
+                                                <input type="text" name="sp_name" placeholder="请输入sp_name" class="form-control" required>
+                                            </div>
+                                        </div>
+                                         <div class="form-group">
+                                            <label class="col-sm-2 control-label">仓库<span class="text-danger">*</span></label>
+                                            <div class="col-sm-6">
+                                                <select name="wh_id" class="form-control" required>
+                                                    <option value=idoo_hangzhou2 selected="selected">杭州2号仓</option>
+                                                    <option value=idoo_dongguan2>东莞2号仓</option>
+                                                    <option value=idoo_india>印度仓</option>
+                                                    <option value=idoo_india2>印度2号仓</option>
+                                                    <option value=idoo_india3>印度3号仓</option>
+                                                    <option value=idoo_india4>印度4号仓</option>
+                                                    <option value=idoo_india5>印度5号仓</option>
+                                                    <option value=idoo_india_seller>seller仓</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                            {% if messages %}
+                                                <script>
+                                                {% for msg in messages %}
+                                                alert('{{ msg.message }}');
+                                                {% endfor %}
+                                                </script>
+                                            {% endif %}
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-6">
+                                                <button type="submit" class="btn btn-primary" href="wms_center/confirm_bind/">确认</button>
+                                                <button type="reset" class="btn btn-primary">重置</button>
+                                            </div>
+                                        </div>
+                                        {% csrf_token %}
+                                    </form>
+                                </div>
+
+                            </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+{% endblock %}

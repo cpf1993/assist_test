@@ -1,0 +1,61 @@
+{% extends "../base.html" %}
+{% load staticfiles %}
+<!DOCTYPE html>
+
+{% block body %}
+            <!-- Main Content -->
+            <div class="container-fluid">
+                <div class="side-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">供应商Hbase日志查询</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <form class="form-horizontal" method="post" action="/supplier/search_result/">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">查询维度<span class="text-danger">*</span></label>
+                                            <div class="col-sm-6">
+                                                <select name="object_type" class="form-control" required>
+                                                    <option value=20 selected="selected">sku</option>
+                                                    <option value=30>supplier</option>
+                                                    <option value=60>link</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">对应id<span class="text-danger">*</span></label>
+                                            <div class="col-sm-6">
+                                                <input type="text" name="object_id" placeholder="请输入id" class="form-control" required>
+                                            </div>
+                                            {% if messages %}
+                                                <script>
+                                                {% for msg in messages %}
+                                                alert('{{ msg.message }}');
+                                                {% endfor %}
+                                                </script>
+                                            {% endif %}
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-6">
+                                                <button type="submit" class="btn btn-primary" href=supplier/search_result/">查询</button>
+                                            </div>
+                                        </div>
+                                        {% csrf_token %}
+                                    </form>
+                                    <h5 class="sub-title">日志结果</h5>
+                                    <div>
+                                        <textarea class="form-control" rows="15">{{ context }}</textarea>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+{% endblock %}
